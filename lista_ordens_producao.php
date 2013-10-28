@@ -77,7 +77,7 @@ $resultado = $dia.'/'.$mes.'/'.$ano;
 
 return $resultado;
 	}
-				
+
 # Conexão com o banco de dados
 mysql_connect("localhost", "root", "");
 
@@ -92,9 +92,16 @@ mysql_select_db("sistema_psd");
 	}
 
 # Roda a query para trazer as OPS do sistema
- $sql="SELECT * FROM tb_recibos WHERE  ".$where." ORDER BY numero_recibo DESC";
+ $sql=" SELECT
+*
+FROM tb_recibos
+INNER JOIN tb_recibos_status ON tb_recibos.flagLibera = tb_recibos_status.idStatRec WHERE  ".$where." ORDER BY numero_recibo DESC";
  $result = mysql_query($sql);
 
+
+
+ 
+ 
 ?>
 	
 <body id="dt_example">
@@ -138,7 +145,7 @@ mysql_select_db("sistema_psd");
 			<td> " . $row['numero_recibo'] . " </td>
 			<td> " . $row['idExterno'] . "</td>
 			<td> " . utf8_encode($row['nome_cadastro']). "</td>
-			<td> " . $row['flagLibera'] . "</td>
+			<td> " . $row['descrStatRec'] . "</td>
 			<td> " . $row['localRec'] . "</td>
 			<td> " . date_dois($row['data_recibo']) . "</td>
 		</tr>";
