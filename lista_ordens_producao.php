@@ -137,6 +137,7 @@ INNER JOIN tb_recibos_status ON tb_recibos.flagLibera = tb_recibos_status.idStat
  while($row = mysql_fetch_array($result))
  {
 ?>
+
 <?php    
 	# Chama os campos que deseja
 	echo "
